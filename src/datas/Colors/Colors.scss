@@ -1,0 +1,47 @@
+/* Reds */
+@import './BaseColors/BaseColorReds.scss';
+
+/* Pinks */
+@import './BaseColors/BaseColorPinks.scss';
+
+/* Oranges */
+@import './BaseColors/BaseColorOranges.scss';
+
+/* Yellows */
+@import './BaseColors/BaseColorYellows.scss';
+
+/* Purples */
+@import './BaseColors/BaseColorPurples.scss';
+
+/* Greens */
+@import './BaseColors/BaseColorGreens.scss';
+
+/* Blues/Cyans */
+@import './BaseColors/BaseColorBlues.scss';
+
+/* Browns */
+@import './BaseColors/BaseColorBrowns.scss';
+
+/* Whites */
+@import './BaseColors/BaseColorWhites.scss';
+
+/* Greys */
+@import './BaseColors/BaseColorGreys.scss';
+
+/* Árnyalatok */
+
+/* Sötétebb árnyalat */
+@function dark($color, $percentage) {
+  @return mix($base-color-black, $color, $percentage);
+}
+
+/* Világosabb árnyalat */
+@function light($color, $percentage) {
+  @return mix($base-color-white, $color, $percentage);
+}
+
+/* Átlátszóság */
+@function opacity($color, $opacity) {
+  @return rgba($color, $opacity)
+}
+
