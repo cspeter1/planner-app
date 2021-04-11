@@ -60,6 +60,7 @@ export default function Day(props: IDayProps): JSX.Element {
 			data-dayname={props.dayName}
 			data-today={props.today}
 			data-work-break={props.workBeakEvent ? props.workBeakEvent : undefined}
+			key={`day-${ props.index }`}
 		>
 			{props.index}
 			{props.event !== undefined ? (renderBadges(props.event)) : ''}

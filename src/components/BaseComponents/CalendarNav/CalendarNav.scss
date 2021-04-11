@@ -1,0 +1,26 @@
+@import '../../../datas/Colors/Colors.scss';
+
+.calendar-nav {
+  background-color: #f9f9f9;
+  border-right: 1px solid $base-color-light-grey;
+  height: 100%;
+  margin-left: -15px;
+  padding: 20px 30px 20px 45px;
+
+  & .actual-date-container {
+    color: $base-color-light-coral;
+    font-size: 1.2rem;
+    font-weight: 100;
+  }
+
+  & .date-container {
+    color: $base-color-black;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0.8rem 0;
+
+    & .date-month-name {
+      font-size: 2.3rem;
+    }
+  }
+}

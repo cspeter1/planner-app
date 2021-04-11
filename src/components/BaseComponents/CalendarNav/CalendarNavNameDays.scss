@@ -1,0 +1,13 @@
+@import '../../../datas/Colors/Colors.scss';
+
+$background-color: #f9f9f9;
+
+.actual-name-day {
+  background-color: $background-color;
+  font-weight: 600;
+  color: $base-color-light-coral;
+  padding: 5px 13px;
+  margin: 4px 6px;
+  border: 1px solid dark($background-color, 15%);
+  border-radius: 15px;
+}

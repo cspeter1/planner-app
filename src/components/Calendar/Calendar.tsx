@@ -1,11 +1,13 @@
 import React from 'react'
+import Grid from '@material-ui/core/Grid'
+
 import { getDayName, isToday, isWeekend } from '../../datas/Days/Days'
 import { getMonth, getMonthName } from '../../datas/Days/Months'
-import { fixHolidays, getEaster, IHoliday } from '../../datas/Days/Holidays'
+import { fixHolidays, getEaster, getHoliday, IHoliday } from '../../datas/Days/Holidays'
 import { isLeapYear } from '../../datas/Days/Years'
+import CalendarNav from '../BaseComponents/CalendarNav/CalendarNav'
 
 import Day from './Day'
-import Grid from '@material-ui/core/Grid'
 
 import './Calendar.scss'
 
@@ -49,7 +51,7 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 								: 6 )))))
 
 		for (let i = 0; i < dayCount; i++) {
-			res.push(<div className='day calendar-empty-day'>
+			res.push(<div className='day calendar-empty-day' key={`day-empty-${previousMonth.days - i}`}>
 				{previousMonth.days - dayCount + i + 1}
 			</div>)
 		}
@@ -64,11 +66,11 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 		})
 	}
 
-	const calendarDays: JSX.Element[] = [...renderWeekdayNames(), ...fillEmptySpace(new Date(actualDate.getFullYear(), actualDate.getMonth(), 1))]
+	const calendarDays: JSX.Element[] = [...renderWeekdayNames(), ...fillEmptySpace(new Date(props.year, props.month, 1))]
 	const holidays: IHoliday[] = [...fixHolidays, ...getEaster(props.year)]
 
 	for (let i = 0; i < actaulMonth.days; i++) {
-		const actMonthDate = new Date(actualDate.getFullYear(), actualDate.getMonth(), i+1)
+		const actMonthDate = new Date(props.year, props.month, i+1)
 
 		const actMonthDateClassList = isWeekend(getDayName(actMonthDate)) ? 'day calendar-day weekend' : 'day calendar-day'
 
@@ -85,23 +87,41 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 				event={ event.length > 0 ? event : undefined }
 				today={today ? today : undefined}
 				workBeakEvent={isWorkBreak}
-				key={i+1}
 			/>
 		)
 	}
 
+	// Utolsó nap megvizsgálása, hogy mennyi nappal kell feltölteni
+	const lastMonthDayName = getDayName(new Date(props.year, props.month, actaulMonth.days))
+
+	const fillLastDaysCount = lastMonthDayName === 'Hétfő' ? 6 :
+		(lastMonthDayName === 'Kedd' ? 5 :
+			(lastMonthDayName === 'Szerda' ? 4 :
+				(lastMonthDayName === 'Csütörtök' ? 3 :
+					(lastMonthDayName === 'Péntek' ? 2 :
+						(lastMonthDayName === 'Szombat' ? 1 : 0)))))
+
+	for (let i = 0; i < fillLastDaysCount; i++) {
+		calendarDays.push(<div className='day calendar-empty-day' key={`day-empty-${i}`}>
+			{i + 1}
+		</div>)
+	}
+
+
+	const actualDateEvents = getHoliday(new Date())
+
 	return(
 		<div className='calendar-container'>
 			<Grid container>
-				<Grid item md={ 4 }>
-					<div className='calendar-nav'></div>
+				<Grid item md={ 4 } xs={ 12 }>
+					<CalendarNav date={ new Date() } events={actualDateEvents}/>
 				</Grid>
-				<Grid item md={ 8 }>
+				<Grid item md={ 8 } xs={ 12 }>
 					<div className='calendar-header'>
 						<span className='month'>{getMonthName(actualDate)}</span>
 						<span className='year'>{ props.year }</span>
 					</div>
-					<div className='calendar-days-container' data-monthname={getMonthName(actualDate)} data-year={actualDate.getFullYear()}>
+					<div className='calendar-days-container' data-monthname={getMonthName(actualDate)} data-year={props.year}>
 						{ calendarDays }
 					</div>
 				</Grid>

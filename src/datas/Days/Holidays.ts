@@ -183,7 +183,7 @@ export const fixHolidays: readonly IHoliday[] = [
 		}, event: {
 			name: 'Szilveszter', icon: 'cheers'
 		}, isWordBreak: false
-	},
+	}
 ]
 
 export function getLeapDay(year: number = new Date().getFullYear()): IHoliday | null {
@@ -238,4 +238,16 @@ export function getEaster(year: number = new Date().getFullYear()): IHoliday[] {
 			}, isWordBreak: true
 		},
 	]
+}
+
+/**
+ * Visszaadja azoknak az ünnepeknek a listáját, ami a megadott napon van
+ * @param date A megadott nap
+ * @returns Azoknak az ünnepeknek a listája, amely a megadott napon van
+ */
+export function getHoliday(date: Date): IHoliday[] {
+	const monthName = getMonthName(date)
+	const allHoliday = [...fixHolidays, ...getEaster(date.getFullYear()), getLeapDay(date.getFullYear())]
+
+	return allHoliday.filter((holiday) => (holiday !== null &&holiday.date.month === monthName && holiday.date.days === date.getDate())) as IHoliday[]
 }

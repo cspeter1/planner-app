@@ -16,6 +16,7 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "arrow-body-style": ["warn", "as-needed"],
     "semi": ["error", "never"],
     "object-curly-spacing": ["warn", "always"],
     "comma-spacing": ["warn", {

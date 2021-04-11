@@ -42,6 +42,5 @@
 
 /* Átlátszóság */
 @function opacity($color, $opacity) {
-  @return rgba($color, $opacity)
+  @return rgba($color, $opacity);
 }
-

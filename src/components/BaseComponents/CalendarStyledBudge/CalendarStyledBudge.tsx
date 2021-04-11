@@ -52,6 +52,7 @@ export function renderStyledBadge (props: IStyledBadgeProps): JSX.Element {
 				position: 'absolute',
 				right: `${ props.index * 20 + 5 }px`,
 				top: '45px',
+				marginRight: '2px',
 				padding: '1px 8px',
 				fontFamily: 'Montserrat',
 				backgroundColor: typeof props.content === 'number' ? '#ECECEC' : 'transparent',
@@ -63,8 +64,7 @@ export function renderStyledBadge (props: IStyledBadgeProps): JSX.Element {
 	)(Badge)
 
 	return <StyledBadge badgeContent={
-		typeof props.content === 'number' ? props.content : <Icon className={ BADGE_ICON_CLASSES[props.content] } style={{
-			fontSize: '15px'
-		} }/>
+		typeof props.content === 'number' ? props.content : <Icon className={ BADGE_ICON_CLASSES[props.content] }
+			style={{ fontSize: '15px' }} />
 	} />
 }
