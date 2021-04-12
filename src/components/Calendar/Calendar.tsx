@@ -9,7 +9,8 @@ import CalendarNav from '../BaseComponents/CalendarNav/CalendarNav'
 
 import Day from './Day'
 
-import './Calendar.scss'
+import styles from './Calendar.scss'
+import dayStyles from './Day.scss'
 
 interface ICalendarProp {
   year: number
@@ -51,7 +52,7 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 								: 6 )))))
 
 		for (let i = 0; i < dayCount; i++) {
-			res.push(<div className='day calendar-empty-day' key={`day-empty-${previousMonth.days - i}`}>
+			res.push(<div className={`${dayStyles.day} ${dayStyles.calendarEmptyDay}`} key={`day-empty-${previousMonth.days - i}`}>
 				{previousMonth.days - dayCount + i + 1}
 			</div>)
 		}
@@ -61,7 +62,7 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 
 	function renderWeekdayNames (): JSX.Element[] {
 		return ['H', 'K', 'Sze', 'Cs', 'P', 'Szo', 'V'].map((actualDayName) => {
-			const classList = actualDayName === 'V' ? 'weekday-name sunday' : 'weekday-name'
+			const classList = actualDayName === 'V' ? `${styles.weekdayName} ${styles.sunday}` : styles.weekdayName
 			return <div className={ classList } key={ actualDayName }>{ actualDayName }</div>
 		})
 	}
@@ -72,8 +73,6 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 	for (let i = 0; i < actaulMonth.days; i++) {
 		const actMonthDate = new Date(props.year, props.month, i+1)
 
-		const actMonthDateClassList = isWeekend(getDayName(actMonthDate)) ? 'day calendar-day weekend' : 'day calendar-day'
-
 		const event = holidays.filter((elem) => (elem.date.month === getMonthName(actMonthDate) && elem.date.days === i+1 ))
 
 		const isWorkBreak = (event && event.some((actEvent) => actEvent.isWordBreak))
@@ -81,12 +80,12 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 		const today = isToday(actMonthDate)
 		calendarDays.push(
 			<Day
-				class={actMonthDateClassList}
 				dayName={getDayName(actMonthDate)}
 				index={i+1}
 				event={ event.length > 0 ? event : undefined }
 				today={today ? today : undefined}
 				workBeakEvent={isWorkBreak}
+				weekend={isWeekend(getDayName(actMonthDate))}
 			/>
 		)
 	}
@@ -102,7 +101,7 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 						(lastMonthDayName === 'Szombat' ? 1 : 0)))))
 
 	for (let i = 0; i < fillLastDaysCount; i++) {
-		calendarDays.push(<div className='day calendar-empty-day' key={`day-empty-${i}`}>
+		calendarDays.push(<div className={`${dayStyles.day} ${dayStyles.calendarEmptyDay}`} key={`day-empty-${i}`}>
 			{i + 1}
 		</div>)
 	}
@@ -111,17 +110,17 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 	const actualDateEvents = getHoliday(new Date())
 
 	return(
-		<div className='calendar-container'>
+		<div className={ styles.calendarContainer }>
 			<Grid container>
 				<Grid item md={ 4 } xs={ 12 }>
-					<CalendarNav date={ new Date() } events={actualDateEvents}/>
+					<CalendarNav date={ new Date() } events={ actualDateEvents }/>
 				</Grid>
 				<Grid item md={ 8 } xs={ 12 }>
-					<div className='calendar-header'>
-						<span className='month'>{getMonthName(actualDate)}</span>
-						<span className='year'>{ props.year }</span>
+					<div className={styles.calendarHeader}>
+						<span className={styles.month}>{getMonthName(actualDate)}</span>
+						<span className={styles.year}>{ props.year }</span>
 					</div>
-					<div className='calendar-days-container' data-monthname={getMonthName(actualDate)} data-year={props.year}>
+					<div className={styles.calendarDaysContainer} data-monthname={getMonthName(actualDate)} data-year={props.year}>
 						{ calendarDays }
 					</div>
 				</Grid>

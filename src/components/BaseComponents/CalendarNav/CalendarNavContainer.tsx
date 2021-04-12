@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './CalendarNavContainer.scss'
+import styles from './CalendarNavContainer.scss'
 
 interface ICalendarNavContainerProps {
   header: string | JSX.Element,
@@ -10,15 +10,15 @@ interface ICalendarNavContainerProps {
 }
 
 export default function CalendarNavContainer(props: ICalendarNavContainerProps): JSX.Element {
-	const headerTextClassList = props.isEmptyHeader ? 'calendar-nav-header calendar-nav-header-empty' : 'calendar-nav-header'
+	const headerTextClassList = props.isEmptyHeader ? [ styles.calendarNavHeader, styles.calendarNavHeaderEmpty ].join(' ') : styles.calendarNavHeader
 
 	return (
-		<div className="calendar-nav-container">
+		<div className={styles.calendarNavContainer}>
 			<div className={headerTextClassList}>
 				{ props.header }
 			</div>
 			{props.hr ? <hr/ > : ''}
-			<div className="calendar-nav-content">
+			<div className={styles.calendarNavContent}>
 				{props.content}
 			</div>
 		</div>

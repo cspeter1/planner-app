@@ -2,7 +2,7 @@ import React from 'react'
 import { getNameDay } from '../../../datas/Days/NameDays'
 import CalendarNavContainer from './CalendarNavContainer'
 
-import './CalendarNavNameDays.scss'
+import styles from './CalendarNavNameDays.scss'
 
 interface ICalendarNameDaysProps {
   date: Date
@@ -11,7 +11,7 @@ interface ICalendarNameDaysProps {
 export default function CalendarNavNameDays (props: ICalendarNameDaysProps): JSX.Element {
 	const actualNameDays = getNameDay(props.date)
 
-	const actualNameDayElems = actualNameDays.map((nameDay, i) => <div className="actual-name-day" key={i}>{nameDay}</div>)
+	const actualNameDayElems = actualNameDays.map((nameDay, i) => <div className={styles.actualNameDay} key={i}>{nameDay}</div>)
 
 	const actualNameDaysText = actualNameDays.length < 2 ? 'Névnap' : 'Névnapok'
 

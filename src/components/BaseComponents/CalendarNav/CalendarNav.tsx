@@ -5,7 +5,7 @@ import { getMonthName } from '../../../datas/Days/Months'
 import CalendarNavHolidays from './CalendarNavHolidays'
 import CalendarNavNameDays from './CalendarNavNameDays'
 
-import './CalendarNav.scss'
+import styles from './CalendarNav.scss'
 
 interface ICalendarNavProps {
   date: Date
@@ -22,19 +22,19 @@ export default function CalendarNav(props: ICalendarNavProps): JSX.Element {
 	const dateMonthNameText = `${ monthName } ${ props.date.getDate() }`
 
 	return (
-		<div className="calendar-nav">
-			<div className="actual-date-container">
+		<div className={styles.calendarNav}>
+			<div className={styles.actualDateContainer}>
 				{actualDayName}
 			</div>
-			<div className="date-container">
-				<div className="date-day-name">
+			<div className={styles.dateContainer}>
+				<div className={styles.dateDayName}>
 					{ dayName },
 				</div>
-				<div className="date-month-name">
+				<div className={styles.dateMonthName}>
 					{ dateMonthNameText }
 				</div>
 			</div>
-			<CalendarNavNameDays date={props.date}/>
+			<CalendarNavNameDays date={ props.date }/>
 			<CalendarNavHolidays events={ props.events }/>
 	  </div>
 	)

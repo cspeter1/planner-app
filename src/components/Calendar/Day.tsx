@@ -3,12 +3,12 @@ import { IHoliday } from '../../datas/Days/Holidays'
 
 import { renderStyledBadge, TBadgeIcon } from '../BaseComponents/CalendarStyledBudge/CalendarStyledBudge'
 
-import './Day.scss'
+import styles from './Day.scss'
 
 interface IDayProps {
-  class: string
   dayName: string
   index: number
+	weekend: boolean
   event?: IHoliday[]
   workBeakEvent?: boolean
   today?: boolean
@@ -54,9 +54,11 @@ function renderBadges(holidays: IHoliday[]): JSX.Element[] {
 }
 
 export default function Day(props: IDayProps): JSX.Element {
+	const classList = props.weekend ? `${styles.day} ${styles.calendarDay} ${styles.weekend}` : `${styles.day} ${styles.calendarDay}`
+
 	return(
 		<div
-			className={props.class}
+			className={classList}
 			data-dayname={props.dayName}
 			data-today={props.today}
 			data-work-break={props.workBeakEvent ? props.workBeakEvent : undefined}

@@ -3,6 +3,9 @@ import HtmlWebpackPlugin from "html-webpack-plugin"
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import ESLintPlugin from "eslint-webpack-plugin"
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path")
+
 const config: webpack.Configuration = {
 	mode: "development",
 	output: {
@@ -31,7 +34,24 @@ const config: webpack.Configuration = {
 					// Creates `style` nodes from JS strings
 					"style-loader",
 					// Translates CSS into CommonJS
-					"css-loader",
+					{
+						loader: "css-loader",
+						options: {
+							modules: {
+								// compileType: "module",
+								mode: "local",
+								// auto: true,
+								// exportGlobals: true,
+								localIdentName: "[path][name]__[local]--[hash:base64:5]",
+								// localIdentContext: path.resolve(__dirname, "src"),
+								// localIdentHashPrefix: "my-custom-hash",
+								// namedExport: true,
+								exportLocalsConvention: "camelCase",
+								// exportOnlyLocals: false,
+							}
+						}
+					},
+					// "css-loader?modules=true&sourceMap=true",
 					// Compiles Sass to CSS
 					"sass-loader",
 				]
