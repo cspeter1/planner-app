@@ -1,0 +1,30 @@
+@import '../../../datas/Colors/Colors.scss';
+
+$base-color-calendar-background: #f9f9f9;
+
+.calendar-add-button-container {
+  background-color: dark($base-color-calendar-background, 4%);
+  border: 1px solid dark($base-color-calendar-background, 12%);
+  border-radius: 10px;
+  padding: 7px 15px;
+  display: flex;
+  width: calc(70% - 28px);
+  justify-content: space-between;
+  align-content: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: start;
+  margin: 0 0 5px 0;
+  cursor: pointer;
+  user-select: none;
+  transition-duration: 500ms;
+
+  & span {
+    color: $base-color-light-coral;
+  }
+
+  &:hover {
+    background-color: dark($base-color-calendar-background, 7%);
+    border-color: dark($base-color-calendar-background, 15%);
+  }
+}

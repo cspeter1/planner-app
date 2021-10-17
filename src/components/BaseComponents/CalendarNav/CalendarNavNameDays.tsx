@@ -11,9 +11,9 @@ interface ICalendarNameDaysProps {
 export default function CalendarNavNameDays (props: ICalendarNameDaysProps): JSX.Element {
 	const actualNameDays = getNameDay(props.date)
 
-	const actualNameDayElems = actualNameDays.map((nameDay, i) => <div className={styles.actualNameDay} key={i}>{nameDay}</div>)
+	const actualNameDayElems = actualNameDays.map((nameDay, i) => <div className={styles.actualNameDay} key={`actual-name-day-${ i }`} data-theme-color>{nameDay}</div>)
 
-	const actualNameDaysText = actualNameDays.length < 2 ? 'Névnap' : 'Névnapok'
+	const actualNameDaysText = `Névnap${ actualNameDays.length < 2 ? '' : 'ok' }`
 
 	return <CalendarNavContainer header={actualNameDaysText} isEmptyHeader={false} hr={true} content={actualNameDayElems}/>
 }

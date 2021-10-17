@@ -1,0 +1,19 @@
+@import "../../../datas/Colors/Colors.scss";
+
+.calendar-nav-events-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  & .calendar-nav-events-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: $base-color-light-coral;
+
+    & span {
+      color: $base-color-black;
+    }
+  }
+}

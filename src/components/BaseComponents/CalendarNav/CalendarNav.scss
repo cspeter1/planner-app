@@ -1,16 +1,21 @@
 @import '../../../datas/Colors/Colors.scss';
 
 .calendar-nav {
-  background-color: #f9f9f9;
+  background-color: $base-color-calendar-background;
   border-right: 1px solid $base-color-light-grey;
-  height: 100%;
+  height: calc(100% - 20px);
   margin-left: -15px;
-  padding: 20px 30px 20px 45px;
+  padding: 20px 30px 0 45px;
+  display: flex;
+  flex-direction: column;
 
   & .actual-date-container {
     color: $base-color-light-coral;
     font-size: 1.2rem;
     font-weight: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   & .date-container {
@@ -21,6 +26,28 @@
 
     & .date-month-name {
       font-size: 2.3rem;
+    }
+  }
+
+  & .calendar-bottom-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    flex-grow: 1;
+
+    & .calendar-nav-data-container {
+      max-height: 49vh;
+      height: 373px;
+      width: 100%;
+      overflow: hidden;
+      background-color: dark($base-color-calendar-background, 1%);
+      border: 1px solid dark($base-color-calendar-background, 7%);
+      border-radius: 10px;
+
+      & .calendar-nav-data-wrapper {
+        padding: 8px;
+      }
     }
   }
 }

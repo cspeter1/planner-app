@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -11,10 +12,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "noEmitOnError": true,
+    "jsx": "react",
+    "target": "es6",
+    "noImplicitAny": false
   },
   "include": ["src"],
   "files": [
-    "./typings.d.ts"
+    "./typings.d.ts",
+    "./global.d.ts"
   ]
 }

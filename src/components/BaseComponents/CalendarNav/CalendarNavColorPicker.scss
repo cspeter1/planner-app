@@ -1,0 +1,32 @@
+@import "../../../datas/Colors/Colors.scss";
+
+.color-picker-container {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: dark($base-color-calendar-background, 6%);
+  border: 1px solid dark($base-color-calendar-background, 15%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition-duration: 500ms;
+
+  &:hover {
+    background-color: dark($base-color-calendar-background, 9%);
+    border-color: dark($base-color-calendar-background, 18%);
+  }
+
+  & .color-picker-icon {
+    font-size: 1.3rem;
+    color: dark($base-color-calendar-background, 40%);
+  }
+}
+
+.color-picker-dots-container {
+  max-width: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+}

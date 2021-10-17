@@ -9,13 +9,11 @@ function App(): JSX.Element {
 	const today = new Date()
 
 	return (
-		<Container fixed>
-			<Calendar
-				year={today.getFullYear()}
-				month={today.getMonth()}
-				key={`${today.getFullYear()}.${today.getMonth()}`}
-			/>
-		</Container>
+		<Calendar
+			year={today.getFullYear()}
+			month={today.getMonth()}
+			key={`${today.getFullYear()}.${today.getMonth()}`}
+		/>
 	)
 }
 

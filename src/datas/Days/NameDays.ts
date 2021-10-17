@@ -3,10 +3,10 @@ import { isLeapYear } from "./Years"
 
 interface INameDay {
   date: IMonth
-  names: string[]
+  names: Array<string>
 }
 
-export const NAME_DAYS: readonly INameDay[] = [
+export const NAME_DAYS: ReadonlyArray<INameDay> = [
 	// Január
 	{ date: { month: 'Január', days: 1 }, names: ['Alpár', 'Fruzsina', 'Bazil'] },
 	{ date: { month: 'Január', days: 2 }, names: ['Ábel', 'Gergely', 'Vazul'] },
@@ -402,7 +402,7 @@ export const NAME_DAYS: readonly INameDay[] = [
  * @param date A kiválasztott dátum
  * @returns Az adott dátumon lévő névnapok
  */
-export function getNameDay(date: Date): string[] {
+export function getNameDay(date: Date): Array<string> {
 	const month = getMonthName(date)
 
 	// Ha szökőév van

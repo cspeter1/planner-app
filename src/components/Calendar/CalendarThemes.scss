@@ -1,0 +1,46 @@
+@import '../../datas/Colors/Colors.scss';
+
+$colors: (
+  'white': $base-color-white,
+  'black': $base-color-black,
+  'cyan': $base-color-cyan,
+  'dodger-blue': $base-color-dodger-blue,
+  'dark-blue': $base-color-dark-blue,
+  'chocolate': $base-color-chocolate,
+  'saddle-brown': $base-color-saddle-brown,
+  'maroon': $base-color-maroon,
+  'green-yellow': $base-color-green-yellow,
+  'lime': $base-color-lime,
+  'dark-green': $base-color-dark-green,
+  'grey': $base-color-grey,
+  'dark-grey': $base-color-dark-grey,
+  'tomato': $base-color-tomato,
+  'orange': $base-color-orange,
+  'light-pink': $base-color-light-pink,
+  'deep-pink': $base-color-deep-pink,
+  'pale-violet-red': $base-color-pale-violet-red,
+  'orchid': $base-color-orchid,
+  'magenta': $base-color-magenta,
+  'purple': $base-color-purple,
+  'blue-violet': $base-color-blue-violet,
+  'light-coral': $base-color-light-coral,
+  'crimson': $base-color-crimson,
+  'dark-red': $base-color-dark-red,
+  'gold': $base-color-gold,
+  'yellow': $base-color-yellow,
+  'peach-puff': $base-color-peach-puff
+);
+
+* [data-theme-color] {
+  @each $class, $color in $colors {
+    &.#{$class} {
+      &:not([data-theme-bg]) {
+        color: $color !important;
+      }
+
+      &[data-theme-bg] {
+        background-color: $color;
+      }
+    }
+  }
+}

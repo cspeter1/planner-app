@@ -6,8 +6,9 @@ interface ICalendarNavContainerProps {
   header: string | JSX.Element,
   isEmptyHeader: boolean,
   hr: boolean,
-  content: JSX.Element | JSX.Element[]
+  content: JSX.Element | Array<JSX.Element>
 }
+
 
 export default function CalendarNavContainer(props: ICalendarNavContainerProps): JSX.Element {
 	const headerTextClassList = props.isEmptyHeader ? [ styles.calendarNavHeader, styles.calendarNavHeaderEmpty ].join(' ') : styles.calendarNavHeader

@@ -12,22 +12,26 @@
     "@typescript-eslint"
   ],
   "extends": [
+    // "eslint:recommended",
+    // "google",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
     "arrow-body-style": ["warn", "as-needed"],
-    "semi": ["error", "never"],
+    "semi": ["warn", "never"],
     "object-curly-spacing": ["warn", "always"],
     "comma-spacing": ["warn", {
       "before": false,
       "after": true
     }],
+    "@typescript-eslint/array-type": ["error", {
+      "default": "generic"
+    }],
+    "@typescript-eslint/ban-types" : [ "off" ],
     "indent": ["warn", "tab"],
-
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/prop-types": "off"
+    "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
     "react": {

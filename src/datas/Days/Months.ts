@@ -12,7 +12,7 @@ export interface IMonth {
   days: number
 }
 
-export const monthDays: IMonth[] = [
+export const monthDays: Array<IMonth> = [
 	{
 		month: 'Január',     days: 31
 	},

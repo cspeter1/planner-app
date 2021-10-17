@@ -28,6 +28,9 @@
 /* Greys */
 @import './BaseColors/BaseColorGreys.scss';
 
+/* Calendar colors */
+$base-color-calendar-background: #f9f9f9;
+
 /* Árnyalatok */
 
 /* Sötétebb árnyalat */
@@ -43,4 +46,15 @@
 /* Átlátszóság */
 @function opacity($color, $opacity) {
   @return rgba($color, $opacity);
+}
+
+/* Szöveg szín beállítása a háttérszín alapján */
+@function get-color($background-color) {
+  @if lightness($background-color) > 50% {
+    @return $base-color-black;
+  }
+
+  @else {
+    @return $base-color-white;
+  }
 }

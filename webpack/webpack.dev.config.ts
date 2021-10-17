@@ -2,9 +2,9 @@ import webpack from "webpack"
 import HtmlWebpackPlugin from "html-webpack-plugin"
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import ESLintPlugin from "eslint-webpack-plugin"
+import path from 'path'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require("path")
 
 const config: webpack.Configuration = {
 	mode: "development",
