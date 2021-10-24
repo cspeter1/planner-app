@@ -4,8 +4,6 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import ESLintPlugin from "eslint-webpack-plugin"
 import path from 'path'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-
 const config: webpack.Configuration = {
 	mode: "development",
 	output: {
@@ -55,13 +53,17 @@ const config: webpack.Configuration = {
 					// Compiles Sass to CSS
 					"sass-loader",
 				]
-			}
+			},
 		],
 	},
 	resolve: {
 		extensions: [".tsx", ".ts", ".js"],
 	},
 	plugins: [
+		new webpack.ProvidePlugin({
+			utils: [ path.resolve("src", "system", "utils", "utils.ts"), 'default' ],
+			log: [ path.resolve("src", "system", "log", "log.ts"), 'default' ],
+		}),
 		new HtmlWebpackPlugin({
 			template: "src/index.html",
 		}),

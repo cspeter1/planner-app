@@ -66,7 +66,7 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 
 	/**
    * A napok elejét feltölti üres napokkal
-   * @param date A megadott dátum
+   * @param {Date} date A megadott dátum
    */
 	function fillEmptySpace(date: Date): Array<JSX.Element> {
 		const res: Array<JSX.Element> = []
@@ -80,11 +80,9 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 		// Mennyi napot kell az aktuális hónap elé beszúrni?
 		const dayCount = preFillCalendar(dayName)
 
-		for (let i = 0; i < dayCount; i++) {
-			res.push(<div className={`${dayStyles.day} ${dayStyles.calendarEmptyDay}`} key={`day-empty-${previousMonth.days - i}`}>
-				{previousMonth.days - dayCount + i + 1}
-			</div>)
-		}
+		utils.array.times(dayCount, (i) => {
+			res.push(<div className={`${dayStyles.day} ${dayStyles.calendarEmptyDay}`} key={`day-empty-${previousMonth.days - i}`}>{previousMonth.days - dayCount + i + 1}</div>)
+		})
 
 		return res
 	}

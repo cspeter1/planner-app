@@ -25,6 +25,13 @@ export const objectFunctions: IObjectFunctions = {
 
 		return res
 	},
+	/**
+	 * Visszaadja az `object`-ben lévő `key` rekúrzív kulcshoz tartozó értéket.
+	 * @template T
+	 * @param {T} object A megadott object.
+	 * @param {string} key Az object rekúrzív kulcsa.
+	 * @returns {T} A `key` kulcson lévő érték.
+	 */
 	getValuesByKey<T extends Object>(object: T, key: string): T {
 		const keys = key.split('.')
 
