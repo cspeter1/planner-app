@@ -2,9 +2,9 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import Container from "@material-ui/core/Container"
 
-import { getDayName, isToday, isWeekend, TDay } from '../../datas/Days/Days'
+import { DAY_SHORT_NAMES, getDayName, isToday, isWeekend, TDay } from '../../datas/Days/Days'
 import { getMonth, getMonthName } from '../../datas/Days/Months'
-import { fixHolidays, getEaster, getHoliday, IHoliday } from '../../datas/Days/Holidays'
+import { getHoliday } from '../../datas/Days/Holidays'
 import { isLeapYear } from '../../datas/Days/Years'
 import CalendarNav from '../BaseComponents/CalendarNav/CalendarNav'
 
@@ -52,7 +52,7 @@ function afterFillCalendar (dayName: TDay): number {
 	}
 }
 
-export default function Calendar(props: ICalendarProp): JSX.Element {
+export default function Calendar(props: ICalendarProp): PlannerElement{
 	// A paraméterek szerinti hónap
 	const actualDate = new Date(props.year, props.month)
 
@@ -68,8 +68,8 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
    * A napok elejét feltölti üres napokkal
    * @param {Date} date A megadott dátum
    */
-	function fillEmptySpace(date: Date): Array<JSX.Element> {
-		const res: Array<JSX.Element> = []
+	function fillEmptySpace(date: Date): Array<PlannerElement> {
+		const res: Array<PlannerElement> = []
 
 		// A hónap első napja
 		const dayName = getDayName(date)
@@ -87,35 +87,35 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 		return res
 	}
 
-	function renderWeekdayNames (): Array<JSX.Element> {
-		return ['H', 'K', 'Sze', 'Cs', 'P', 'Szo', 'V'].map((actualDayName) => {
+	function renderWeekdayNames (): Array<PlannerElement> {
+		return DAY_SHORT_NAMES.map((actualDayName) => {
 			const classList = actualDayName === 'V' ? `${styles.weekdayName} ${styles.sunday}` : styles.weekdayName
 			return <div className={ classList } key={ actualDayName }>{ actualDayName }</div>
 		})
 	}
 
-	const calendarDays: Array<JSX.Element> = [...renderWeekdayNames(), ...fillEmptySpace(new Date(props.year, props.month, 1))]
-	const holidays: Array<IHoliday> = [...fixHolidays, ...getEaster(props.year)]
+	const calendarDays: Array<PlannerElement> = [ ...renderWeekdayNames(), ...fillEmptySpace(new Date(props.year, props.month, 1)) ]
+	const holidays = getHoliday(actualDate)
 
-	for (let i = 0; i < actaulMonth.days; i++) {
-		const actMonthDate = new Date(props.year, props.month, i+1)
+	utils.array.times(actaulMonth.days, (index) => {
+		const actMonthDate = new Date(props.year, props.month, index+1)
 
-		const event = holidays.filter((elem) => (elem.date.month === getMonthName(actMonthDate) && elem.date.days === i+1 ))
+		const event = holidays.filter((elem) => (elem.date.month === getMonthName(actMonthDate) && elem.date.days === index+1 ))
 
 		const isWorkBreak = (event && event.some((actEvent) => actEvent.isWordBreak))
 
 		const today = isToday(actMonthDate)
 		calendarDays.push(
 			<Day
-				dayName={getDayName(actMonthDate)}
-				index={i+1}
+				dayName={ getDayName(actMonthDate) }
+				index={ index+1 }
 				event={ event.length > 0 ? event : undefined }
 				today={today ? today : undefined}
 				workBeakEvent={isWorkBreak}
 				weekend={isWeekend(getDayName(actMonthDate))}
 			/>
 		)
-	}
+	})
 
 	// Utolsó nap megvizsgálása, hogy mennyi nappal kell feltölteni
 	const lastDayName = getDayName(new Date(props.year, props.month, actaulMonth.days))
@@ -128,7 +128,7 @@ export default function Calendar(props: ICalendarProp): JSX.Element {
 
 	const actualDateEvents = getHoliday(new Date())
 
-	return(
+	return (
 		<div className={styles.calendarContentContainer} data-theme-color data-theme-bg>
 			<Container>
  				<div className={ styles.calendarContainer }>

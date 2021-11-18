@@ -14,7 +14,7 @@ interface IDayProps {
   today?: boolean
 }
 
-function renderBadges(holidays: Array<IHoliday>): Array<JSX.Element> {
+function renderBadges(holidays: Array<IHoliday>): Array<PlannerElement> {
 	// Van-e ikon az ünnepek között?
 	const hasIcons = holidays.filter((holiday) => holiday.event.icon !== undefined)
 	const restHolidays = holidays.filter((holiday) => !hasIcons.includes(holiday))
@@ -46,19 +46,21 @@ function renderBadges(holidays: Array<IHoliday>): Array<JSX.Element> {
 	}) ]
 }
 
-export default function Day(props: IDayProps): JSX.Element {
-	const classList = props.weekend ? `${styles.day} ${styles.calendarDay} ${styles.weekend}` : `${styles.day} ${styles.calendarDay}`
+export default function Day(props: IDayProps): PlannerElement {
+	const { weekend, dayName, today, workBeakEvent, index, event } = props
 
-	return(
+	const classList = weekend ? `${styles.day} ${styles.calendarDay} ${styles.weekend}` : `${styles.day} ${styles.calendarDay}`
+
+	return (
 		<div
-			className={classList}
-			data-dayname={props.dayName}
-			data-theme-color={props.today}
-			data-work-break={props.workBeakEvent ? props.workBeakEvent : undefined}
-			key={`day-${ props.index }`}
+			className={ classList }
+			data-dayname={ dayName }
+			data-theme-color={ today }
+			data-work-break={ workBeakEvent ? workBeakEvent : undefined }
+			key={`day-${ index }`}
 		>
-			{props.index}
-			{props.event !== undefined ? (renderBadges(props.event)) : ''}
+			{ index}
+			{ event !== undefined ? (renderBadges(event)) : '' }
 		</div>
 	)
 }

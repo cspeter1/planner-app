@@ -12,19 +12,23 @@ import CalendarNavEvents from './CalendarNavEvents'
 import styles from './CalendarNav.scss'
 import CalendarNavColorPicker from './CalendarNavColorPicker'
 
+const SCROLLBAR_HEIGHT = 373
+
 interface ICalendarNavProps {
   date: Date
-	events: Array<IHoliday>
+	events: ReadonlyArray<IHoliday>
 }
 
-export default function CalendarNav(props: ICalendarNavProps): JSX.Element {
+export default function CalendarNav(props: ICalendarNavProps): PlannerElement {
+	const { date, events } = props
 
-	const actualDayName = getActualDay(props.date)
 
-	const dayName = getDayName(props.date)
-	const monthName = getMonthName(props.date)
+	const actualDayName = getActualDay(date)
 
-	const dateMonthNameText = `${ monthName } ${ props.date.getDate() }`
+	const dayName = getDayName(date)
+	const monthName = getMonthName(date)
+
+	const dateMonthNameText = `${ monthName } ${ date.getDate() }`
 
 	return (
 		<div className={styles.calendarNav}>
@@ -42,10 +46,10 @@ export default function CalendarNav(props: ICalendarNavProps): JSX.Element {
 			</div>
 			<div className={styles.calendarBottomData}>
 				<div className={ styles.calendarNavDataContainer }>
-					<Scrollbars autoHide style={{ height: 373 }}>
+					<Scrollbars autoHide style={{ height: SCROLLBAR_HEIGHT }}>
 						<div className={ styles.calendarNavDataWrapper }>
-							<CalendarNavNameDays date={ props.date }/>
-							<CalendarNavHolidays events={ props.events }/>
+							<CalendarNavNameDays date={ date }/>
+							<CalendarNavHolidays events={ events }/>
 							<CalendarNavEvents events={[]}/>
 						</div>
 					</Scrollbars>

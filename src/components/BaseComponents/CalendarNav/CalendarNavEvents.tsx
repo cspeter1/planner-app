@@ -11,7 +11,7 @@ interface ICalendarNavEventsProps {
   events: Array<IEvent>
 }
 
-export default function CalendarNavEvents(props: ICalendarNavEventsProps): JSX.Element {
+export default function CalendarNavEvents(props: ICalendarNavEventsProps): PlannerElement {
 	const eventsText = <div className={styles.calendarNavEventsText}  data-theme-color>{props.events.length} <span>Esemény</span></div>
 	return (
 		<div className={ styles.calendarNavEventsContainer }>

@@ -50,6 +50,6 @@
   "scripts": {
     "build": "webpack --config ./webpack/webpack.prod.config.ts",
     "start": "webpack serve --config ./webpack/webpack.dev.config.ts",
-    "eslint:unused": "eslint-find-rules --unused ./.eslintrc.json --ext .js --ext .ts --ext .tsx"
+    "eslint:unused": "eslint-find-rules --unused ./.eslintrc.js --ext .js --ext .ts --ext .tsx"
   }
 }

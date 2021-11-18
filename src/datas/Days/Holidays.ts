@@ -468,9 +468,10 @@ export function getEaster(year: number = new Date().getFullYear()): Array<IHolid
  * @param date A megadott nap
  * @returns Azoknak az ünnepeknek a listája, amely a megadott napon van
  */
-export function getHoliday(date: Date): Array<IHoliday> {
+export function getHoliday(date: Date): ReadonlyArray<IHoliday> {
 	const monthName = getMonthName(date)
 	const allHoliday = [...fixHolidays, ...getEaster(date.getFullYear()), getLeapDay(date.getFullYear())]
 
-	return allHoliday.filter((holiday) => (holiday !== null &&holiday.date.month === monthName && holiday.date.days === date.getDate())) as Array<IHoliday>
+	return allHoliday.filter((holiday) => (holiday !== null && holiday.date.month === monthName && holiday.date.days === date.getDate())) as ReadonlyArray<IHoliday>
 }
+

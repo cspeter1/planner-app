@@ -1,8 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { Container } from "@material-ui/core"
 
 import Calendar from './components/Calendar/Calendar'
+import Home from "./pages/Home"
+
+import './styles.scss'
 
 function App(): JSX.Element {
 	// Az aktuális nap
@@ -19,7 +21,6 @@ function App(): JSX.Element {
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.getElementById("root")
+		<Home />
+	</React.StrictMode>, document.getElementById("root")
 )

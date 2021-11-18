@@ -22,18 +22,18 @@ function setNewColorClass(color: string): void {
 	// Az összesről a témát beállító class-ok törlése
 	themeElems.forEach((te) => {
 		COLOR_TYPES.forEach((ct) => {
-			te.classList.remove(themeStyles[ct.replace(/ /g, '-')])
+			te.classList.remove(themeStyles[ ct.replace(/ /g, '-') ])
 		})
 	})
 
 	// Új színek beállítása
 	themeElems.forEach((te) => {
-		te.classList.add(themeStyles[vColorName])
+		te.classList.add(themeStyles[ vColorName ])
 	})
 }
 
-export default function CalendarNavColorPicker(): JSX.Element {
-	const [open, setOpen] = React.useState(false)
+export default function CalendarNavColorPicker(): PlannerElement {
+	const [ open, setOpen ] = React.useState(false)
 
 	const handleClickOpen = () => {
 		setOpen(true)
@@ -66,7 +66,7 @@ export default function CalendarNavColorPicker(): JSX.Element {
 
 	const colorPicker = (
 		<div>
-			<StyledTooltip title="Téma kiválasztása" placement="bottom">
+			<StyledTooltip title='Téma kiválasztása' placement='bottom'>
 				<div className={ styles.colorPickerContainer } onClick={handleClickOpen}>
 					<Icon className={`fas fa-cog ${styles.colorPickerIcon}`}/>
 				</div>
@@ -74,14 +74,14 @@ export default function CalendarNavColorPicker(): JSX.Element {
 			<Dialog
 				open={open}
 				onClose={handleCancel}
-				aria-labelledby="alert-dialog-title"
-				aria-describedby="alert-dialog-description"
+				aria-labelledby='alert-dialog-title'
+				aria-describedby='alert-dialog-description'
 			>
-				<DialogTitle id="alert-dialog-title">
+				<DialogTitle id='alert-dialog-title'>
             Téma kiválasztása
 				</DialogTitle>
 				<DialogContent>
-					<DialogContentText id="alert-dialog-description">
+					<DialogContentText id='alert-dialog-description'>
 						<div className={ styles.colorPickerDotsContainer }>
 							{
 								COLOR_TYPES.map((ct, i) => (
@@ -92,10 +92,10 @@ export default function CalendarNavColorPicker(): JSX.Element {
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleCancel} color="default">
+					<Button onClick={handleCancel} color='default'>
               Mégse
 					</Button>
-					<Button onClick={handleSet} color="primary">
+					<Button onClick={handleSet} color='primary'>
               Mentés
 					</Button>
 				</DialogActions>

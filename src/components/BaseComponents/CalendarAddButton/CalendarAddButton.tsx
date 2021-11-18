@@ -3,7 +3,7 @@ import React from 'react'
 
 import styles from './CalendarAddButton.scss'
 
-export default function CalendarAddButton(): JSX.Element {
+export default function CalendarAddButton(): PlannerElement {
 	return (
 		<div className={ styles.calendarAddButtonContainer }>
       Új esemény

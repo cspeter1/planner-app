@@ -5,10 +5,10 @@ import CalendarNavContainer from './CalendarNavContainer'
 import styles from './CalendarNavHolidays.scss'
 
 interface ICalendarHolidaysProps {
-  events: Array<IHoliday>
+  events: ReadonlyArray<IHoliday>
 }
 
-export default function CalendarHolidays(props: ICalendarHolidaysProps): JSX.Element {
+export default function CalendarHolidays(props: ICalendarHolidaysProps): PlannerElement {
 	const hasEvents = Boolean(props.events && props.events.length > 0)
 	const holidaysHeader = !hasEvents ? 'Ezen a napon nincs ünnep' : (props.events.length === 1 ? 'Ünnep' : `Ünnepek (${props.events.length})`)
 

@@ -13,7 +13,10 @@ import { stringFunctions, IStringFunctions } from "./string/stringFunctions"
 // Number
 import { numberFunctions, INumberFunctions } from "./number/numberFunctions"
 
-type TUtilTypes = [IArrayFunctions, IObjectFunctions, IStringFunctions, INumberFunctions]
+// Boolean
+import { booleanFunctions, IBooleanFunctions } from "./boolean/booleanFunctions"
+
+type TUtilTypes = [IArrayFunctions, IObjectFunctions, IStringFunctions, INumberFunctions, IBooleanFunctions]
 
 @staticImplementation<TUtils<TUtilTypes>>()
 export default class utils{
@@ -31,5 +34,9 @@ export default class utils{
 
 	public static get number (): INumberFunctions {
 		return numberFunctions
+	}
+
+	public static get boolean (): IBooleanFunctions {
+		return booleanFunctions
 	}
 }

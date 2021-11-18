@@ -1,0 +1,17 @@
+@use "../../datas/Colors/Colors.scss" as *;
+
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  background-color: $base-color-light-coral;
+  width: 20%;
+  height: 100vh;
+  border-right: 0.1px solid $base-color-light-grey;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+}

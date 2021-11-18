@@ -10,6 +10,9 @@ export interface IArrayFunctions {
    includes: <T>(array: ReadonlyArray<T>, search: unknown, fromIndex?: number) => boolean
    unique: <N extends Narrowable, A extends [] | ReadonlyArray<N> & UniqueArray<A, A>> (array: ReadonlyArray<N>) => A
    isUnique: <N extends Narrowable>(array: ReadonlyArray<N>) => boolean
+   random: <U, T extends ReadonlyArray<U>>(array: T) => U
+   randomIndex: <T> (array: ReadonlyArray<T>) => number
+   isEmpty: <T> (array: ReadonlyArray<T>) => boolean
 }
 
 export const arrayFunctions: IArrayFunctions = {
@@ -55,7 +58,7 @@ export const arrayFunctions: IArrayFunctions = {
    * @returns {(T | undefined)} Az `array` utolsó eleme, vagy undefined
    */
 	last<T>(array: ReadonlyArray<T>): T | undefined {
-		return array.length > 0 ? array[array.length - 1] : undefined
+		return array.length > 0 ? array[ array.length - 1 ] : undefined
 	},
 	/**
    * Visszaadja az `array` utolsó indexét, üres tömb esetén -1-et ad vissza.
@@ -95,5 +98,33 @@ export const arrayFunctions: IArrayFunctions = {
     */
 	isUnique<N extends Narrowable>(array: ReadonlyArray<N>): boolean {
 		return arrayFunctions.unique(array).length === array.length
-	}
+	},
+   /**
+    * Visszaad egy véletlenszerű elemet `array` tömbből.
+    * @template U
+    * @template T
+    * @param {T} array A megadott tömb.
+    * @returns {U} Az `array` tömbből véletlenszűen kiválasztott elem.
+    */
+   random<U, T extends ReadonlyArray<U>> (array: T): U {
+      return array[arrayFunctions.randomIndex(array)]
+   },
+   /**
+    * Visszaad egy véletlen indexet `array` tömbből. Ha üres tömb akkor -1-et ad vissza.
+    * @template T
+    * @param {ReadonlyArray<T>} array A megadott tömb.
+    * @returns {number} A véletlenszerű index.
+    */
+   randomIndex<T> (array: ReadonlyArray<T>): number {
+      return arrayFunctions.isEmpty(array) ? -1 : utils.number.random(0, arrayFunctions.lastIndex(array))
+   },
+   /**
+    * Meghatározza, hogy a tömb üres-e.
+    * @template T
+    * @param {ReadonlyArray<T>} array A megadott tömb.
+    * @returns {boolean} A tömb üres.
+    */
+   isEmpty<T> (array: ReadonlyArray<T>): boolean {
+      return array.length === 0
+   }
 }

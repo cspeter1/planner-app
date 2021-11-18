@@ -1,0 +1,14 @@
+@use "../../../../datas/Colors/Colors.scss" as *;
+@use "../../utils.scss" as *;
+
+$color: $base-color-light-coral;
+$background-color: $base-color-white;
+
+.app-icon {
+  @include navbar-icon-container(3.5rem);
+
+  color: $color;
+  background-color: $background-color;
+
+  @include navbar-icon-container-hover($color, $background-color);
+}

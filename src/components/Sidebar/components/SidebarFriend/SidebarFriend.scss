@@ -1,0 +1,16 @@
+@use "../../../Navbar/utils.scss" as *;
+@use "../../../../datas/Colors/Colors.scss" as *;
+
+.sidebar-friend {
+  display: flex;
+
+  position: relative;
+  width: 100%;
+  margin: 0.25rem 0.75rem;
+
+  & .sidebar-friend-avatar {
+    @include navbar-icon-container;
+    background-color: $base-color-light-grey;
+
+  }
+}

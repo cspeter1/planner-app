@@ -18,7 +18,7 @@ export const stringFunctions: IStringFunctions = {
    * @returns {Capitalize<T>} A szöveg nagy kezdőbetűvel.
    */
 	capitalize<T extends string> (s: T): Capitalize<T> {
-		const [firstLetter, ...rest] = s.split('')
+		const [ firstLetter, ...rest ] = s.split('')
 
 		return `${ firstLetter.toLocaleUpperCase() }${ rest.join('') }` as Capitalize<T>
 	},
@@ -29,7 +29,7 @@ export const stringFunctions: IStringFunctions = {
    * @returns {Uncapitalize<T>} Kis kezdőbetűvel kezdődő szöveg.
    */
 	uncapitalize<T extends string> (s: T): Uncapitalize<T> {
-		const [firstLetter, ...rest] = s.split('')
+		const [ firstLetter, ...rest ] = s.split('')
 		return  `${ firstLetter.toLocaleLowerCase() }${ rest.join('') }` as Uncapitalize<T>
 	},
 	/**

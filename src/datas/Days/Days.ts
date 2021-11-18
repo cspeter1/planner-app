@@ -13,6 +13,8 @@ export interface IEvent {
   icon?: TBadgeIcon
 }
 
+export const DAY_SHORT_NAMES = ['H', 'K', 'Sze', 'Cs', 'P', 'Szo', 'V'] as const
+
 /**
  * Megadja, hogy a kiválasztott dátum a hét melyik napja
  * @param date A megadott dátum

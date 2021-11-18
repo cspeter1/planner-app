@@ -1,0 +1,13 @@
+@use "../../../../datas/Colors/Colors.scss" as *;
+@use "../../utils.scss" as *;
+
+$color: $base-color-light-grey;
+$background-color: $base-color-white-smoke;
+
+.base-icon {
+  @include navbar-icon-container;
+  color: $color;
+  background-color: $background-color;
+
+  @include navbar-icon-container-hover($color, $background-color);
+}

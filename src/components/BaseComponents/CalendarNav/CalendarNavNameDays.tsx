@@ -9,7 +9,9 @@ interface ICalendarNameDaysProps {
 }
 
 export default function CalendarNavNameDays (props: ICalendarNameDaysProps): JSX.Element {
-	const actualNameDays = getNameDay(props.date)
+	const { date } = props
+
+	const actualNameDays = getNameDay(date)
 
 	const actualNameDayElems = actualNameDays.map((nameDay, i) => <div className={styles.actualNameDay} key={`actual-name-day-${ i }`} data-theme-color>{nameDay}</div>)
 

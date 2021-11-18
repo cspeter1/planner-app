@@ -1,0 +1,8 @@
+@use "../../../../datas/Colors/Colors.scss" as *;
+
+.sidebar-header {
+  font-size: 2rem;
+  text-align: start;
+  font-family: Arial, Helvetica, sans-serif;
+  color: $base-color-white;
+}

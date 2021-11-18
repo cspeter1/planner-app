@@ -1,4 +1,4 @@
-const UTILS_TYPES = [ 'array', 'object', 'string', 'number' ] as const
+const UTILS_TYPES = [ 'array', 'object', 'string', 'number', 'boolean' ] as const
 type TUtilsType = typeof UTILS_TYPES[number]
 
 export type TUtils<T extends ReadonlyArray<Object>> = {

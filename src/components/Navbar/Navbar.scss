@@ -1,0 +1,14 @@
+@import "../../datas/Colors/Colors.scss";
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 15%;
+  height: 100vh;
+  position: fixed;
+  border-right: 0.1px solid $base-color-light-grey;
+
+  background-color: $base-color-white;
+}
